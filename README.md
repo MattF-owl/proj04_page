@@ -69,3 +69,60 @@ Average outage distribution by state:
   height="600"
   frameborder="0">
 </iframe>
+
+## Map Figures
+Number of distribution by state
+<iframe
+  src="graph/number_of_power_outage.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
+
+Average outage duration by state
+<iframe
+  src="graph/avg_outage_duration_map.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
+
+# Assessment of Missingness
+
+# Hypothesis Testing 
+We will be testing on whether richer/more developed states in the US have a different outage duration, meaning that the power restoration comes back faster in states with better economic status. After finding the average real GSP of all states (roughly 50,000), we decided to label each state by "above 50,000" and "below 50,000"
+
+Null hypothesis: The duration of the restoring time has no difference between the states with more than 50,000 real GSP and the states with less than 50,000 GSP.
+
+Alternative hypothesis: There is a difference in the power outage duration between states with more than 50,000 real GSP and those with less than 50,000 GSP.
+
+Test statistics: The absolute difference in the median of 2 groups. We chose median because the distribution of the power outage duration is right-skewed. The absolute value is for observing the difference between categorical groups. 
+
+The following graph shows the distribution of the power outage duration between two groups. The label "True" indicates the power outages occured in states with a real GSP over 50,000. False just means the other way. 
+
+<iframe
+  src="graph/outage_duration_with_labels.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
+
+The following figure visualizes the result of the permutation test, where the red axis represents our observed test statistic. The p-value of this test is 0.0, meaning that none of the iterations in the test has a greater test statistics than our observed test statistic (same as the figure). Therefore, we reject the null hypothesis and conclude that there is a difference in the distributions of outage duration between two labels of states. 
+
+<iframe
+  src="graph/perm_test_dist.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
+
+
+## Framing a Prediction Problem 
+Our model aims to estimate/predict the power outage duration by the selected features ("Pc_realgsp_state ($)", "Total_price (cents / kWh)", "Cause_category", "Demand_loss_mw", "Customers_affected", "Total_sales",). This is a typical regression problem, so the performance matrix chosen is root mean square error (RMSE). The lower RMSE, the closer distance between the predicted value and the actual value. 
+
+## Base Line Model
+The selected features as indicated above. Before training, we need to address a few issues regarding the data. First, "Cause_category" is a nomial categorical feature, so we need to apply OneHotEncoder to convert the categories into columns of 0's and 1's. Then, we standardize the continuous quantitative features to reduce the impact of outliers. Lastly, since the distribution of power outage duration is right-skewed, performing a log-transformation makes the trend relatively more linear. 
+
+## Final Model 
+
+## Fairness Analysis

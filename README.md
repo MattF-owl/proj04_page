@@ -35,6 +35,7 @@ Before analyzing the data, we need to rename the columns to increase readability
 6. Replace missing predictor variables by group (cause_category) mean inputation 
 
 This is the first 5 rows of the cleaned dataframe:
+
 '|   Obs | U_s__state   |   Year |   Pc_realgsp_state ($) |   Total_price (cents / kWh) | Cause_category     |   Demand_loss_mw |   Customers_affected |   Total_sales |   Outage_duration |\n|------:|:-------------|-------:|-----------------------:|----------------------------:|:-------------------|-----------------:|---------------------:|--------------:|------------------:|\n|     1 | Minnesota    |   2011 |                  51268 |                        9.28 | severe weather     |              nan |                70000 |       6562520 |        51         |\n|     2 | Minnesota    |   2014 |                  53499 |                        9.28 | intentional attack |              nan |                  nan |       5284231 |         0.0166667 |\n|     3 | Minnesota    |   2010 |                  50447 |                        8.15 | severe weather     |              nan |                70000 |       5222116 |        50         |\n|     4 | Minnesota    |   2012 |                  51598 |                        9.19 | severe weather     |              nan |                68200 |       5787064 |        42.5       |\n|     5 | Minnesota    |   2015 |                  54431 |                       10.43 | severe weather     |              250 |               250000 |       5970339 |        29         |'
 
 

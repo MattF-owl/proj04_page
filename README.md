@@ -8,20 +8,20 @@ By Matthew Feng and Yu-Ming (Kenny) Wu
 In this data science project, we are given a dataset about the major power outage caused by severe weather conditions in the US. The dataset includes the basic information (time and location) as well as the impacts regarding the power outages. Our goal is to investigate further meaning in the data through statistical tests and eventually come up with a prediction model to estimate the duration of a power outage by information that can be gained when a power outage occurs. 
 
 ## Columns used from the dataset for this project
-| Column Name | Description | 
-|----------|----------|
-|"U.S._STATE"|	Represents all the states in the continental U.S.|
-|"YEAR"|Indicates the year when the outage event occurred|
-|"PC.REALGSP.STATE"|Per capita real gross state product (GSP) in the U.S. state (measured in 2009 chained U.S. dollars)|
-|"OUTAGE.START.DATE"|Outage start date|
-|"OUTAGE.START.TIME"|Outage start time|
-|"OUTAGE.RESTORATION.DATE"|Outage restoration date|
-|"OUTAGE.RESTORATION.TIME"|Outage restoration time|
-|"TOTAL.PRICE"|Average monthly electricity price in the U.S. state (cents/kilowatt-hour)|
-|"CAUSE.CATEGORY"|Categories of all the events causing the major power outages|
-|"DEMAND.LOSS.MW"|Amount of peak demand lost during an outage event (in Megawatt) [but in many cases, total demand is reported]|
-|"CUSTOMERS.AFFECTED"|Number of customers affected by the power outage event|
-|"TOTAL.SALES"|Total electricity consumption in the U.S. state (megawatt-hour)
+| Column Name | Description |
+|-------------|-------------|
+| "U.S._STATE" | Represents all the states in the continental U.S. |
+| "YEAR" | Indicates the year when the outage event occurred |
+| "PC.REALGSP.STATE" | Per capita real gross state product (GSP) in the U.S. state |
+| "OUTAGE.START.DATE" | Outage start date |
+| "OUTAGE.START.TIME" | Outage start time |
+| "OUTAGE.RESTORATION.DATE" | Outage restoration date |
+| "OUTAGE.RESTORATION.TIME" | Outage restoration time |
+| "TOTAL.PRICE" | Average monthly electricity price in the U.S. state |
+| "CAUSE.CATEGORY" | Categories of events causing the major power outages |
+| "DEMAND.LOSS.MW" | Amount of peak demand lost during an outage event |
+| "CUSTOMERS.AFFECTED" | Number of customers affected by the outage |
+| "TOTAL.SALES" | Total electricity consumption in the U.S. state |
 
 # Data Cleaning and Exploratory Data Analysis
 Before analyzing the data, we need to rename the columns to increase readability and handle missingness for a more accurate analysis. 

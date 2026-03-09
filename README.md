@@ -8,6 +8,7 @@ By Matthew Feng and Yu-Ming (Kenny) Wu
 In this data science project, we are given a dataset about the major power outage caused by severe weather conditions in the US. The dataset includes the basic information (time and location) as well as the impacts regarding the power outages. Our goal is to investigate further meaning in the data through statistical tests and eventually come up with a prediction model to estimate the duration of a power outage by information that can be gained when a power outage occurs. 
 
 ## Columns used from the dataset for this project
+
 | Column Name | Description |
 |-------------|-------------|
 | "U.S._STATE" | Represents all the states in the continental U.S. |

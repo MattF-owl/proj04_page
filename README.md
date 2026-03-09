@@ -45,27 +45,18 @@ This is the first 5 rows of the cleaned dataframe:
 
 # Exploratory Data Analysis
 ## Univariate Analysis
+## Univariate Analysis
+
 Distribution of outage duration (hours):
-<iframe
-  src="graph/dist_of_outage_duration.html"
-  width="100%"
-  height="600"
-  frameborder="0">
-</iframe>
+
+<iframe src="graph/dist_of_outage_duration.html" width="100%" height="600" frameborder="0"></iframe>
 
 Distribution of realGSP by state ($):
-<iframe
-  src="graph/dist_of_real_GSP_per_state.html"
-  width="100%"
-  height="600"
-  frameborder="0">
-</iframe>
+
+<iframe src="graph/dist_of_real_GSP_per_state.html" width="100%" height="600" frameborder="0"></iframe>
 
 ## Bivariate Analysis
+
 Average outage distribution by state:
-<iframe
-  src="graph/avg_outage_duration_by_state.html"
-  width="100%"
-  height="600"
-  frameborder="0">
-</iframe>
+
+<iframe src="graph/avg_outage_duration_by_state.html" width="100%" height="600" frameborder="0"></iframe>

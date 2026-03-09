@@ -13,10 +13,10 @@ In this data science project, we are given a dataset about the major power outag
 |"U.S._STATE"|	Represents all the states in the continental U.S.|
 |"YEAR"|Indicates the year when the outage event occurred|
 |"PC.REALGSP.STATE"|Per capita real gross state product (GSP) in the U.S. state (measured in 2009 chained U.S. dollars)|
-|"OUTAGE.START.DATE"|This variable indicates the day of the year when the outage event started (as reported by the corresponding Utility in the region)|
-|"OUTAGE.START.TIME"|This variable indicates the time of the day when the outage event started (as reported by the corresponding Utility in the region)|
-|"OUTAGE.RESTORATION.DATE"|This variable indicates the day of the year when power was restored to all the customers (as reported by the corresponding Utility in the region)|
-|"OUTAGE.RESTORATION.TIME"|This variable indicates the day of the year when power was restored to all the customers (as reported by the corresponding Utility in the region)|
+|"OUTAGE.START.DATE"|Outage start date|
+|"OUTAGE.START.TIME"|Outage start time|
+|"OUTAGE.RESTORATION.DATE"|Outage restoration date|
+|"OUTAGE.RESTORATION.TIME"|Outage restoration time|
 |"TOTAL.PRICE"|Average monthly electricity price in the U.S. state (cents/kilowatt-hour)|
 |"CAUSE.CATEGORY"|Categories of all the events causing the major power outages|
 |"DEMAND.LOSS.MW"|Amount of peak demand lost during an outage event (in Megawatt) [but in many cases, total demand is reported]|
@@ -36,7 +36,7 @@ Before analyzing the data, we need to rename the columns to increase readability
 
 This is the first 5 rows of the cleaned dataframe:
 | Obs | U_s__state | Year | Pc_realgsp_state ($) | Total_price (cents / kWh) | Cause_category | Demand_loss_mw | Customers_affected | Total_sales | Outage_duration |
-|-----|-----------|------|----------------------|---------------------------|---------------|---------------|-------------------|------------|----------------|
+|-----|-----------|------|-------------|---------------------------|---------------|---------------|-------------------|------------|----------|
 | 1 | Minnesota | 2011 | 51268 | 9.280000 | severe weather | 613.708763 | 70000.000000 | 6562520.0 | 51.000000 |
 | 2 | Minnesota | 2014 | 53499 | 9.280000 | intentional attack | 9.564972 | 1865.523560 | 5284231.0 | 0.016667 |
 | 3 | Minnesota | 2010 | 50447 | 8.150000 | severe weather | 613.708763 | 70000.000000 | 5222116.0 | 50.000000 |
@@ -45,18 +45,27 @@ This is the first 5 rows of the cleaned dataframe:
 
 # Exploratory Data Analysis
 ## Univariate Analysis
-## Univariate Analysis
-
 Distribution of outage duration (hours):
-
-<iframe src="graph/dist_of_outage_duration.html" width="100%" height="600" frameborder="0"></iframe>
+<iframe
+  src="graph/dist_of_outage_duration.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
 
 Distribution of realGSP by state ($):
-
-<iframe src="graph/dist_of_real_GSP_per_state.html" width="100%" height="600" frameborder="0"></iframe>
+<iframe
+  src="graph/dist_of_real_GSP_per_state.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
 
 ## Bivariate Analysis
-
 Average outage distribution by state:
-
-<iframe src="graph/avg_outage_duration_by_state.html" width="100%" height="600" frameborder="0"></iframe>
+<iframe
+  src="graph/avg_outage_duration_by_state.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>

@@ -94,12 +94,12 @@ Average outage duration by state
 ## Missingness Analysis
 
 ## Handling Missingness
-|Column|Method| 
-|------|------|
-|"Demand_loss_mw"|group mean inputation on "Cause_category"|
-|"Customers_affected"|group mean inputation on "Us_state"|
-|"Total Sales"|group mean inputation on "Us_state"|
-|"Total_price (cents / kWh)"|group mean inputation on "Us_state"|
+| Column | Method | 
+| ------ | ------ |
+| "Demand_loss_mw" | group mean inputation on "Cause_category" |
+| "Customers_affected" | group mean inputation on "Us_state" |
+| "Total Sales" | group mean inputation on "Us_state" |
+| "Total_price (cents / kWh)" | group mean inputation on "Us_state" |
 
 
 # Hypothesis Testing 

@@ -92,6 +92,7 @@ Average outage duration by state
 
 # Assessment of Missingness
 In the cleaned dataframe, there are columns with missing values: Total_price (cents / kWh), Demand_loss_mw, Customers_affected, and Total_sales. The following table shows the missingness proportion of each columns. 
+
 | Column Name | Proportion of Missing Values |
 |-------------|------------------------------|
 |Total_price (cents / kWh)|0.008130|

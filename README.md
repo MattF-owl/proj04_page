@@ -37,7 +37,7 @@ Before analyzing the data, we need to rename the columns to increase readability
 
 This is the first 5 rows of the cleaned dataframe:
 
-|   Obs | U_s__state   |   Year |   Pc_realgsp_state ($) |   Total_price (cents / kWh) | Cause_category     |   Demand_loss_mw |   Customers_affected |   Total_sales |   Outage_duration |
+|   Obs | US_state   |   Year |   Pc_realgsp_state ($) |   Total_price (cents / kWh) | Cause_category     |   Demand_loss_mw |   Customers_affected |   Total_sales |   Outage_duration |
 |------:|:-------------|-------:|-----------------------:|----------------------------:|:-------------------|-----------------:|---------------------:|--------------:|------------------:|
 |     1 | Minnesota    |   2011 |                  51268 |                        9.28 | severe weather     |              nan |                70000 |       6562520 |        51         |
 |     2 | Minnesota    |   2014 |                  53499 |                        9.28 | intentional attack |              nan |                  nan |       5284231 |         0.0166667 |
@@ -91,16 +91,29 @@ Average outage duration by state
 </iframe>
 
 # Assessment of Missingness
-## Missingness Analysis
+In the cleaned dataframe, there are columns with missing values: Total_price (cents / kWh), Demand_loss_mw, Customers_affected, and Total_sales. The following table shows the missingness proportion of each columns. 
+| Column Name | Proportion of Missing Values |
+|-------------|------------------------------|
+|Total_price (cents / kWh)|0.008130|
+|Demand_loss_mw|0.455285|
+|Customers_affected|0.284553|
+|Total_sales|0.008130|
+
+
+## NMAR Analysis
+Among these columns, "Demand_loss_mw" and "Customers_affected" are likely to be MNAR, because the missingness may depend on the companies which measure the scale of impact of the power outages. When the outage is severe, it may be difficult to collect data over a wide range. On the other hand, when the impact of the outage is negligible, the companies may just ignore and not to report it. It is also possible that certain companies are not reporting, but we still cannot conclude the exact reason why some data is missing. 
+
+## MAR Analysis 
+Now, we want to find out the missingness dependency of "Total_price (cents / kWh)" and "Total_sales". To do so, we will perform some permutation tests. Then, we found that 
 
 ## Handling Missingness
 
 | Column | Method | 
 |--------|--------|
 | "Demand_loss_mw" | group mean inputation on "Cause_category" |
-| "Customers_affected" | group mean inputation on "Us_state" |
+| "Customers_affected" | group mean inputation conditioned on "Us_state" |
 | "Total Sales" | group mean inputation on "Us_state" |
-| "Total_price (cents / kWh)" | group mean inputation on "Us_state" |
+| "Total_price (cents / kWh)" | group mean inputation conditioned on "Us_state" |
 
 
 # Hypothesis Testing 

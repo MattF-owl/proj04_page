@@ -91,7 +91,7 @@ Average outage duration by state
 </iframe>
 
 # Assessment of Missingness
-In the cleaned dataframe, there are columns with missing values: Total_price (cents / kWh), Demand_loss_mw, Customers_affected, and Total_sales. The following table shows the missingness proportion of each columns. 
+In the cleaned dataframe, there are columns with missing values: Total_price (cents / kWh), Demand_loss_mw, Customers_affected, and Total_sales. The following table shows the missingness proportion of each column. 
 
 | Column Name | Proportion of Missing Values |
 |-------------|------------------------------|
@@ -105,7 +105,43 @@ In the cleaned dataframe, there are columns with missing values: Total_price (ce
 Among these columns, "Demand_loss_mw" and "Customers_affected" are likely to be MNAR, because the missingness may depend on the companies which measure the scale of impact of the power outages. When the outage is severe, it may be difficult to collect data over a wide range. On the other hand, when the impact of the outage is negligible, the companies may just ignore and not to report it. It is also possible that certain companies are not reporting, but we still cannot conclude the exact reason why some data is missing. 
 
 ## MAR Analysis 
-Now, we want to find out the missingness dependency of "Total_price (cents / kWh)" and "Total_sales". To do so, we will perform some permutation tests. Then, we found that 
+Now, we want to find out the missingness dependency of "Total_price (cents / kWh)" and "Total_sales". By examining the dataframe, we found out that both columns have missing value in the year of 2016, so we decided to  perform some permutation test to confirm this dependency. The following figure shows the frequency of outage over year conditioned on whether "Total_price (cents / kWh)" is missing. 
+
+<iframe
+  src="graph/total_price_missing.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
+
+The following figure shows the result the permutation test. The test statistic is the total variance distance between two groups because "Year" is a categorical feature. 
+
+<iframe
+  src="graph/total_price_missing_perm.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
+
+Similarly, The following figure shows the frequency of outage over year conditioned on whether "Total_sales" is missing. 
+
+<iframe
+  src="graph/total_sales_missing.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
+
+The following figure shows the result the permutation test. The test statistic is the total variance distance between two groups because "Year" is a categorical feature. 
+
+<iframe
+  src="graph/total_sales_missing_perm.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
+
+
 
 ## Handling Missingness
 

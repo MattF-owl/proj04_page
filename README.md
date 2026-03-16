@@ -94,6 +94,7 @@ Average outage duration by state
 ## Missingness Analysis
 
 ## Handling Missingness
+
 | Column | Method | 
 |--------|--------|
 | "Demand_loss_mw" | group mean inputation on "Cause_category" |

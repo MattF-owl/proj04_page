@@ -1,11 +1,13 @@
 # Power Outages Analysis
+
+By Matthew Feng and Yu-Ming (Kenny) Wu
 ---
 
 # Introduction 
 
-By Matthew Feng and Yu-Ming (Kenny) Wu
+In this data science project, we are given a dataset about the major power outage caused by severe weather conditions in the US, from January 2000 to July 2006. The server outages (or major outages) is refers to  those that impacted least 50,000 customers or caused an unplanned firm load loss of atleast 300 MW. This defined by the Department of Energy.
 
-In this data science project, we are given a dataset about the major power outage caused by severe weather conditions in the US. The dataset includes the basic information (time and location) as well as the impacts regarding the power outages. Our goal is to investigate further meaning in the data through statistical tests and eventually come up with a prediction model to estimate the duration of a power outage by information that can be gained when a power outage occurs. 
+The dataset includes the basic information (time and location) as well as the impacts regarding the power outages. Our goal is to investigate further meaning in the data through statistical tests and eventually come up with a prediction model to estimate the duration of a power outage by information that can be gained when a power outage occurs. 
 
 ## Columns used from the dataset for this project
 

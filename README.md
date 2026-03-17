@@ -6,9 +6,13 @@
 
 # Introduction 
 
-In this data science project, we are given a dataset about the major power outage caused by severe weather conditions in the US, from January 2000 to July 2006. The server outages (or major outages) is refers to  those that impacted least 50,000 customers or caused an unplanned firm load loss of atleast 300 MW. This defined by the Department of Energy.
+In this data science project, we are given a dataset about the major power outage caused by severe weather conditions in the US, from January 2000 to July 2006. The server outages (or major outages) is refers to  those that impacted least 50,000 customers or caused an unplanned firm load loss of atleast 300 MW. This defined by the Department of Energy. People can access to the original data at https://engineering.purdue.edu/LASCI/research-data/outages, which is published by Purdue University, Laboratory for Advancing Sustainable Critical Infrastructure.
 
-The dataset includes the basic information (time and location) as well as the impacts regarding the power outages. Our goal is to investigate further meaning in the data through statistical tests and eventually come up with a prediction model to estimate the duration of a power outage by information that can be gained when a power outage occurs. 
+The dataset includes the basic information (time and location) as well as the impacts regarding the power outages. Such as the general information - time and geographic areas, regional climate information, outage events information, cause of the event, extent of outages, regional electricity consumption information, regional economic characteristics, and regional land-use characterics. 
+
+Our goal is to investigate further meaning in the data through statistical tests and eventually come up with a prediction model to estimate the duration of a power outage by information that can be gained when a power outage occurs. We are trying to figure out which characteristic have the gratest impact on outage restoration time?
+
+The data set originally have 1534 rows and 55 columns, which corresponded to 1534 outage events and 55 features for each outage event. There are few of these features listed below, which related with our analysis.
 
 ## Columns used from the dataset for this project
 

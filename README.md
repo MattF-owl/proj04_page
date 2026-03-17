@@ -1,6 +1,7 @@
 # Power Outages Analysis
 
-By Matthew Feng and Yu-Ming (Kenny) Wu
+  By Matthew Feng and Yu-Ming (Kenny) Wu
+  
 ---
 
 # Introduction 

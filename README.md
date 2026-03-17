@@ -10,7 +10,7 @@ In this data science project, we are given a dataset about the major power outag
 
 The dataset includes the basic information (time and location) as well as the impacts regarding the power outages. Such as the general information - time and geographic areas, regional climate information, outage events information, cause of the event, extent of outages, regional electricity consumption information, regional economic characteristics, and regional land-use characterics. 
 
-Our goal is to investigate further meaning in the data through statistical tests and eventually come up with a prediction model to estimate the duration of a power outage by information that can be gained when a power outage occurs. We are trying to figure out which characteristic have the gratest impact on outage restoration time?
+Our goal is to investigate further meaning in the data through statistical tests and eventually come up with a prediction model to estimate the duration of a power outage by information that can be gained when a power outage occurs. We are trying to figure out a research problem: which outage characteristics have the greatest impact on restoration time? To solveing this problem, we want to help people, especially policy makers, to figure out what can they do to reduce power outage duration, improve their living quality.
 
 The data set originally have 1534 rows and 55 columns, which corresponded to 1534 outage events and 55 features for each outage event. There are few of these features listed below, which related with our analysis.
 
@@ -20,6 +20,8 @@ The data set originally have 1534 rows and 55 columns, which corresponded to 153
 |-------------|-------------|
 | "U.S._STATE" | Represents all the states in the continental U.S. |
 | "YEAR" | Indicates the year when the outage event occurred |
+| "MONTH" | Indicates the month when the outage event occurred |
+| "CLIMATE.REGION" | U.S. Climate regions as specified by National Centers for Environmental Information (nine climatically consistent regions in continental U.S.A.) |
 | "PC.REALGSP.STATE" | Per capita real gross state product (GSP) in the U.S. state |
 | "OUTAGE.START.DATE" | Outage start date |
 | "OUTAGE.START.TIME" | Outage start time |

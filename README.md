@@ -37,12 +37,15 @@ The data set originally have 1534 rows and 55 columns, which corresponded to 153
 Before analyzing the data, we need to rename the columns to increase readability and handle missingness for a more accurate analysis. 
 
 ## Actions done 
-1. Modify column name format (ie: replace "." by "_")
-2. Reindex the dataframe 
-3. Remove all rows with missing outage-time-related features
-4. Add an extra column named "outage_duration", which is calculated by restoration time and start time of the power outage in hours
-5. Drop columns regarding outage/restoration time 
+1. Since the raw data is in excel form, thus we removed 5 extra rows at the top and 1 extra column at the right side, moved the features name at the top of the dataframe
+   
+2. after remove these extra rows and column, the top two rows are feature names and the unit or description with corresponded feature names. To format this, I connection symbols from '.' to underscore '_' for giving a better visualizaiton. Also, combined the unites and the coresponding features together with a single space. Such as: 'RES.PERCEN' -> 'Res_percen (%)', 'RES.PRICE' -> 'Res_Price (cents/kWh)' etc.
 
+3. Next, I select few relevant features that used for my analysis. They are: 'US_state', 'Year', 'Pc_realgsp_state ($)', 'Outage_start_date', 'Outage_start_time', 'Outage_restoration_date', 'Outage_restoration_time', 'Total_price (cents / kWh)', 'Cause_category', 'Demand_loss_mw', 'Customers_affected', 'Total_sales'.
+
+4. To get the outage restoration duration, we combined 'Outage_start_date', 'Outage_start_time', 'Outage_restoration_date', 'Outage_restoration_time' together. First, we transform all these features into "datetime" data strucutre, then use 'Outage_restoration_date' and 'Outage_restoration_time' minus the 'Outage_start_date' and 'Outage_start_time' to get the restoration duration for each outage, transform the durating into the unit of hour. Lastly, drop columns regarding outage/restoration time  - 'Outage_start_date', 'Outage_start_time', 'Outage_restoration_date', 'Outage_restoration_time'.
+
+5. Notice there are '0' exist in 'Outage_duration' which we calculated, which means there is 0 hour of outage happend, seems like a missing value. Thus we transform "0"s in the 'Outage_duration' into 'np.nan'
 
 This is the first 5 rows of the cleaned dataframe:
 

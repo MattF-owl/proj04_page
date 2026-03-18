@@ -50,13 +50,12 @@ Before analyzing the data, we need to rename the columns to increase readability
 This is the first 5 rows of the cleaned dataframe:
 
 |   Obs | US_state   |   Year |   Pc_realgsp_state ($) |   Total_price (cents / kWh) | Cause_category     |   Demand_loss_mw |   Customers_affected |   Total_sales |   Outage_duration |
-|------:|:-------------|-------:|-----------------------:|----------------------------:|:-------------------|-----------------:|---------------------:|--------------:|------------------:|
-|     1 | Minnesota    |   2011 |                  51268 |                        9.28 | severe weather     |              nan |                70000 |       6562520 |        51         |
-|     2 | Minnesota    |   2014 |                  53499 |                        9.28 | intentional attack |              nan |                  nan |       5284231 |         0.0166667 |
-|     3 | Minnesota    |   2010 |                  50447 |                        8.15 | severe weather     |              nan |                70000 |       5222116 |        50         |
-|     4 | Minnesota    |   2012 |                  51598 |                        9.19 | severe weather     |              nan |                68200 |       5787064 |        42.5       |
-|     5 | Minnesota    |   2015 |                  54431 |                       10.43 | severe weather     |              250 |               250000 |       5970339 |        29         |
-
+|------:|:-----------|-------:|-----------------------:|----------------------------:|:-------------------|-----------------:|---------------------:|--------------:|------------------:|
+|     1 | Minnesota  |   2011 |                  51268 |                        9.28 | severe weather     |              nan |                70000 |       6562520 |        51         |
+|     2 | Minnesota  |   2014 |                  53499 |                        9.28 | intentional attack |              nan |                  nan |       5284231 |         0.0166667 |
+|     3 | Minnesota  |   2010 |                  50447 |                        8.15 | severe weather     |              nan |                70000 |       5222116 |        50         |
+|     4 | Minnesota  |   2012 |                  51598 |                        9.19 | severe weather     |              nan |                68200 |       5787064 |        42.5       |
+|     5 | Minnesota  |   2015 |                  54431 |                       10.43 | severe weather     |              250 |               250000 |       5970339 |        29         |
 
 # Exploratory Data Analysis
 ## Univariate Analysis
@@ -79,7 +78,7 @@ Distribution of realGSP by state ($):
 ## Bivariate Analysis
 Average outage distribution by state:
 <iframe
-  src="graph/avg_outage_duration_by_state.html"
+  src="graph/median_outage_duration_by_cause.html"
   width="100%"
   height="600"
   frameborder="0">
@@ -101,6 +100,20 @@ Average outage duration by state
   height="600"
   frameborder="0">
 </iframe>
+
+## Grouping and Aggregates 
+We create a pivot-table to see the median outage duration by each cause over years. The pivot-table is presented as below:
+
+| Cause_category                |      2000 |      2001 |      2002 |      2003 |      2004 |      2005 |     2006 |       2007 |      2008 |      2009 |      2010 |       2011 |      2012 |       2013 |       2014 |       2015 |      2016 |
+|:------------------------------|----------:|----------:|----------:|----------:|----------:|----------:|---------:|-----------:|----------:|----------:|----------:|-----------:|----------:|-----------:|-----------:|-----------:|----------:|
+| equipment failure             | nan       |   8.23333 | nan       |   2.59167 |   3.68333 |   2.48333 |   2.65   |   3.43333  |   4.48333 |  15.45    |   4.91667 |  0.0666667 |  1.75     |   3.25833  | nan        | nan        | nan       |
+| fuel supply emergency         | nan       | nan       | nan       | nan       | nan       | nan       | nan      |  27.9333   | 396       | 109.5     | 168       | 78.75      | 60        |  43.7167   |  93.575    |   4.25     | 568.367   |
+| intentional attack            | nan       | nan       | nan       |  22.1583  | nan       | nan       | nan      | nan        | nan       | nan       | nan       |  1.16667   |  0.25     |   1        |   0.15     |   1        |   1.3     |
+| islanding                     | nan       | nan       | nan       | nan       | nan       | nan       | nan      |   0.783333 |   3.725   |   4.84167 |   2.03333 |  0.883333  |  0.333333 |   0.533333 |   0.933333 |   0.583333 |   3.71667 |
+| public appeal                 | nan       |   2.33333 | nan       |  25.8     |  72       | nan       |   5.95   |  40.5083   | 100.958   |   5       |   8.53333 | 10         |  5        | nan        |   6.7      |   5.55833  | nan       |
+| severe weather                |  41.5     | 169       |  86       |  62.2333  |  34.5     |  73.5     |  45.5417 |  25.5      |  53       |  45.1667  |  48.875   | 38.3167    | 41.7833   |  31        |  16.6667   |  32.5      |  23.4167  |
+| system operability disruption |   6.25833 |   4.01667 |   3.83333 |  44.9     |   1.58333 |   4.11667 |   3.95   |   6.91667  |   3.24167 |   1.775   |   3.31667 |  4.86667   |  0.216667 |   2.01667  |   0.866667 |   1.08333  |   3.7     |
+
 
 # Assessment of Missingness
 In the cleaned dataframe, there are columns with missing values: Total_price (cents / kWh), Demand_loss_mw, Customers_affected, and Total_sales. The following table shows the missingness proportion of each column. 

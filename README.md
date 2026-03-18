@@ -224,6 +224,12 @@ Lastly, we set up a hypothesis test to find the missing mechanism of feature `Ou
   frameborder="0">
 </iframe>
 
+**Null Hypothesis:**  The distribution of `Cause_category` is same when `Outage_Duration` is missing vs not missing.
+
+**Alternate Hypothesis:** The distribution of `Cause_category` is different when `Outage_Duration` is missing vs not missing.
+
+**Test Statistic:** TVD - Total Variation Distance
+
 <iframe
   src="graph/outage_missing_perm.html"
   width="100%"
@@ -231,6 +237,7 @@ Lastly, we set up a hypothesis test to find the missing mechanism of feature `Ou
   frameborder="0">
 </iframe>
 
+Through the graph above, we can see the observed TVD of feature `Outage_Duration` missingness has a p-value 0.0. The result show we reject the null hypothesis. This result means the feature `Outage_Duration` missing value is dependent on the feature `Cause_category`, showing `Outage_Duration` is likely to be MAR.
 
 
 ## Handling Missingness

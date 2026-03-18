@@ -173,9 +173,10 @@ The following figure shows the result the permutation test. The test statistic i
 | Column | Method | 
 |--------|--------|
 | "Demand_loss_mw" | group mean inputation on "Cause_category" |
-| "Customers_affected" | group mean inputation conditioned on "Us_state" |
-| "Total Sales" | group mean inputation on "Us_state" |
-| "Total_price (cents / kWh)" | group mean inputation conditioned on "Us_state" |
+| "Customers_affected" | group mean inputation conditioned on "US_state" |
+| "Total Sales" | group mean inputation on "US_state" |
+| "Total_price (cents / kWh)" | group mean inputation conditioned on "US_state" |
+| "Outage_duration" | group mean inputation conditioned on "Cause_category" |
 
 
 # Hypothesis Testing 

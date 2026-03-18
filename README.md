@@ -120,10 +120,11 @@ In the cleaned dataframe, there are columns with missing values: Total_price (ce
 
 | Column Name | Proportion of Missing Values |
 |-------------|------------------------------|
-|Total_price (cents / kWh)|0.008130|
-|Demand_loss_mw|0.455285|
-|Customers_affected|0.284553|
-|Total_sales|0.008130|
+|Total_price (cents / kWh)|0.014342|
+|Demand_loss_mw|0.459583|
+|Customers_affected|0.288787|
+|Total_sales|0.014342|
+|Outage_duration|0.037810|
 
 
 ## NMAR Analysis

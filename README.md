@@ -126,7 +126,8 @@ Second, we can visualize the average outage duration in each state of US, from J
 Through the map above, we can see that Wisconsin and West Virginia take longest average time to restore power to the outage area.
 
 ## Grouping and Aggregates 
-We create a pivot-table to see the median outage duration by each cause over years. The pivot-table is presented as below:
+
+We create a pivot-table to see the median outage duration by each cause over years. Using median value can better represent the shape and the distribution of the skewed data. The columns are the corresponded years, the rows are corresponded causation of power outages. The pivot-table is presented as below:
 
 | Cause_category                |      2000 |      2001 |      2002 |      2003 |      2004 |      2005 |     2006 |       2007 |      2008 |      2009 |      2010 |       2011 |      2012 |       2013 |       2014 |       2015 |      2016 |
 |:------------------------------|----------:|----------:|----------:|----------:|----------:|----------:|---------:|-----------:|----------:|----------:|----------:|-----------:|----------:|-----------:|-----------:|-----------:|----------:|
@@ -138,6 +139,9 @@ We create a pivot-table to see the median outage duration by each cause over yea
 | severe weather                |  41.5     | 169       |  86       |  62.2333  |  34.5     |  73.5     |  45.5417 |  25.5      |  53       |  45.1667  |  48.875   | 38.3167    | 41.7833   |  31        |  16.6667   |  32.5      |  23.4167  |
 | system operability disruption |   6.25833 |   4.01667 |   3.83333 |  44.9     |   1.58333 |   4.11667 |   3.95   |   6.91667  |   3.24167 |   1.775   |   3.31667 |  4.86667   |  0.216667 |   2.01667  |   0.866667 |   1.08333  |   3.7     |
 
+In this pivot table, the "nan" value shows there is not power outage happened in the corresponded year with the corrponded causations. I notice that on row "servere weather" and "system operability disruption" there are power outages happened every year, showing these two causation is more common than other 6 power outage causations.
+
+Also, in the row of "fuel supply emergency", the duration of outage restoration is averagely longer then all other 7 power outage causations based on the corresponded years, showing "fuel supply emergency" is a severe power outage causation.
 
 # Assessment of Missingness
 In the cleaned dataframe, there are columns with missing values: Total_price (cents / kWh), Demand_loss_mw, Customers_affected, and Total_sales. The following table shows the missingness proportion of each column. 

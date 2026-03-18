@@ -86,7 +86,7 @@ Through the histogram above, we can see most US states have averagely 50k of rea
 
 ### Map Figures
 
-Last, we can visualize the number of outage happened in each state of US, from January 2000 to July 2006:
+Last, we can visualize the number of outage happened in each state of US, from January 2000 to July 2016:
 
 <iframe
   src="graph/number_of_power_outage.html"
@@ -214,6 +214,24 @@ The following figure shows the result the permutation test. The test statistic i
 </iframe>
 
 Through the graph above, we can see the observed TVD of feature `Total_sales (cents / kWh)` missingness has a p-value 0.0. The result show we reject the null hypothesis. This result means the feature `Total_sales (cents / kWh)` missing value is dependent on the feature `Year`, showing `Total_sales (cents / kWh)` is likely to be MAR.
+
+Lastly, we set up a hypothesis test to find the missing mechanism of feature `Outage_duration` by using permutation test. We will set the significance level into 0.05.
+
+iframe
+  src="graph/duration_missing.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
+
+iframe
+  src="graph/duration_missing_perm.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
+
+
 
 ## Handling Missingness
 

@@ -218,14 +218,14 @@ Through the graph above, we can see the observed TVD of feature `Total_sales (ce
 Lastly, we set up a hypothesis test to find the missing mechanism of feature `Outage_duration` by using permutation test. We will set the significance level into 0.05.
 
 <iframe
-  src="graph/duration_missing.html"
+  src="graph/outage_missing.html"
   width="100%"
   height="600"
   frameborder="0">
 </iframe>
 
 <iframe
-  src="graph/duration_missing_perm.html"
+  src="graph/outage_missing_perm.html"
   width="100%"
   height="600"
   frameborder="0">

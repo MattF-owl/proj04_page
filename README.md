@@ -168,7 +168,15 @@ Now, we want to find out the missingness dependency of "Total_price (cents / kWh
   frameborder="0">
 </iframe>
 
-The following figure shows the result the permutation test. The test statistic is the total variance distance between two groups because "Year" is a categorical feature. 
+Then we set up a hypothesis test to find the missing mechanism of feature 'Total_price (cents / kWh)' by using permutation test. We will set the significance level into 0.05.
+
+**Null Hypothesis:**  The distribution of 'Year' is same when 'Total_price (cents / kWh)' is missing vs not missing.
+
+**Alternate Hypothesis:** The distribution of 'Year' is different when 'Total_price (cents / kWh)' is missing vs not missing.
+
+**Test Statistic:** TVD - Total Variation Distance
+
+The following figure shows the result the permutation test:
 
 <iframe
   src="graph/total_price_missing_perm.html"
@@ -176,6 +184,8 @@ The following figure shows the result the permutation test. The test statistic i
   height="600"
   frameborder="0">
 </iframe>
+
+Through the graph above, we can see the observed TVD of feature 'Total_price (cents / kWh)' missingness has a p-value 0.0. The result show we reject the null hypothesis. This result means the feature 'Total_price (cents / kWh)' missing value is dependent on the feature 'Year', showing 'Total_price (cents / kWh)' is likely to be MAR.
 
 Similarly, The following figure shows the frequency of outage over year conditioned on whether "Total_sales" is missing. 
 
@@ -186,6 +196,14 @@ Similarly, The following figure shows the frequency of outage over year conditio
   frameborder="0">
 </iframe>
 
+Then we set up a hypothesis test to find the missing mechanism of feature 'Total_sales (cents / kWh)' by using permutation test. We will set the significance level into 0.05.
+
+**Null Hypothesis:**  The distribution of 'Year' is same when 'Total_sales (cents / kWh)' is missing vs not missing.
+
+**Alternate Hypothesis:** The distribution of 'Year' is different when 'Total_sales (cents / kWh)' is missing vs not missing.
+
+**Test Statistic:** TVD - Total Variation Distance
+
 The following figure shows the result the permutation test. The test statistic is the total variance distance between two groups because "Year" is a categorical feature. 
 
 <iframe
@@ -195,7 +213,7 @@ The following figure shows the result the permutation test. The test statistic i
   frameborder="0">
 </iframe>
 
-
+Through the graph above, we can see the observed TVD of feature 'Total_sales (cents / kWh)' missingness has a p-value 0.0. The result show we reject the null hypothesis. This result means the feature 'Total_sales (cents / kWh)' missing value is dependent on the feature 'Year', showing 'Total_sales (cents / kWh)' is likely to be MAR.
 
 ## Handling Missingness
 

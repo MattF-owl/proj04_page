@@ -86,7 +86,7 @@ Through the histogram above, we can see most US states have averagely 50k of rea
 
 ### Map Figures
 
-Last, we can visualize the number of outage happened in each state of US, from January 2000 to July 2006:
+Last, we can visualize the number of outage happened in each state of US, from January 2000 to July 2016:
 
 <iframe
   src="graph/number_of_power_outage.html"

@@ -227,13 +227,13 @@ Through the graph above, we can see the observed TVD of feature `Total_sales (ce
 
 
 # Hypothesis Testing 
-We will be testing on whether richer/more developed states in the US have a different outage duration, meaning that the power restoration comes back faster in states with better economic status. After finding the average real GSP of all states (roughly 50,000), we decided to label each state by "above 50,000" and "below 50,000"
+We will be testing on whether richer/more developed states in the US have a different outage duration, meaning that the power restoration comes back faster in states with better economic status. After finding the average real GSP of all states (roughly 50,000), we decided to label each state by "above 50,000" and "below 50,000" (Since feature `Pc_realgsp_state ($)` have a roughly normal distribution, which we find the median and mean of this feature is rouphly 50,000, thus,  mean is an appropriate measure of center using for the permutation test).
 
-Null hypothesis: The duration of the restoring time has no difference between the states with more than 50,000 real GSP and the states with less than 50,000 GSP.
+**Null hypothesis:** The duration of the restoring time has no difference between the states with more than 50,000 real GSP and the states with less than 50,000 GSP.
 
-Alternative hypothesis: There is a difference in the power outage duration between states with more than 50,000 real GSP and those with less than 50,000 GSP.
+**Alternative hypothesis:** There is a difference in the power outage duration between states with more than 50,000 real GSP and those with less than 50,000 GSP.
 
-Test statistics: The absolute difference in the median of 2 groups. We chose median because the distribution of the power outage duration is right-skewed. The absolute value is for observing the difference between categorical groups. 
+**Test statistics:** The absolute difference in the median of 2 groups. We chose median because the distribution of the power outage duration is right-skewed. The absolute value is for observing the difference between categorical groups. 
 
 The following graph shows the distribution of the power outage duration between two groups. The label "True" indicates the power outages occured in states with a real GSP over 50,000. False just means the other way. 
 

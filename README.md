@@ -45,7 +45,7 @@ Before analyzing the data, we need to rename the columns to increase readability
 
 4. To get the outage restoration duration, we combined 'Outage_start_date', 'Outage_start_time', 'Outage_restoration_date', 'Outage_restoration_time' together. First, we transform all these features into "datetime" data strucutre, then use 'Outage_restoration_date' and 'Outage_restoration_time' minus the 'Outage_start_date' and 'Outage_start_time' to get the restoration duration for each outage, transform the durating into the unit of hour. Lastly, drop columns regarding outage/restoration time  - 'Outage_start_date', 'Outage_start_time', 'Outage_restoration_date', 'Outage_restoration_time'.
 
-5. Notice there are '0' exist in 'Outage_duration' which we calculated, which means there is 0 hour of outage happend, seems like a missing value. Thus we transform "0"s in the 'Outage_duration' into 'np.nan'
+5. Notice there are '0' exist in 'Outage_duration' which we calculated, which means there is 0 hour of outage happend, seems like a missing value. Thus we transform "0"s in the 'Outage_duration' into 'np.nan'。
 
 This is the first 5 rows of the cleaned dataframe:
 
@@ -59,7 +59,11 @@ This is the first 5 rows of the cleaned dataframe:
 
 # Exploratory Data Analysis
 ## Univariate Analysis
-Distribution of outage duration (hours):
+
+For exploring the data set, we used univariate analysis to visulize the distribution or the other information of a single feature.
+
+First, we draw the histogram on feature 'Outage_duration':
+
 <iframe
   src="graph/dist_of_outage_duration.html"
   width="100%"
@@ -67,7 +71,10 @@ Distribution of outage duration (hours):
   frameborder="0">
 </iframe>
 
-Distribution of realGSP by state ($):
+Through the histogram graph above, we can see that the outage duration have a right skew shape, shows most outage duration being fixed really fast.
+
+Second, we can visualize the 'Pc_realgsp_state' by histogram, to see the distribution of the real GSP per state, in dollar:
+
 <iframe
   src="graph/dist_of_real_GSP_per_state.html"
   width="100%"
@@ -75,17 +82,12 @@ Distribution of realGSP by state ($):
   frameborder="0">
 </iframe>
 
-## Bivariate Analysis
-Average outage distribution by state:
-<iframe
-  src="graph/median_outage_duration_by_cause.html"
-  width="100%"
-  height="600"
-  frameborder="0">
-</iframe>
+Through the histogram above, we can see most US states have averagely 50k of real gsp at most time from January 2000 to July 2006. Only few states have 160k of real gsp at some time between January 2000 to July 2006.
 
-## Map Figures
-Number of distribution by state
+### Map Figures
+
+Last, we can visualize the number of outage happened in each state of US, from January 2000 to July 2006:
+
 <iframe
   src="graph/number_of_power_outage.html"
   width="100%"
@@ -93,13 +95,35 @@ Number of distribution by state
   frameborder="0">
 </iframe>
 
-Average outage duration by state
+Through the map above, we can see that the most number of outages are happened in California, and the second most number of outages are happened in Texas.
+
+## Bivariate Analysis
+
+Also we used bivariate analysis to visulize the distribution or the other information of two features. To help me understand some relation between pairs of features.
+
+First, I want to visualize the relation between the causation of outages and the median of outage duration by bar graph. I choose to use median of outage duration because of the distribution of outage duration is skewed, using median can better explain the distribution of outage duration.
+
+<iframe
+  src="graph/median_outage_duration_by_cause.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
+
+Through the bar graph, we can see that most outages is caused by the fuel supply emergency. The second main cause of power outage is severe weather.
+
+### Map Figures
+
+Second, we can visualize the average outage duration in each state of US, from January 2000 to July 2006:
+
 <iframe
   src="graph/avg_outage_duration_map.html"
   width="100%"
   height="600"
   frameborder="0">
 </iframe>
+
+Through the map above, we can see that Wisconsin and West Virginia take longest average time to restore power to the outage area.
 
 ## Grouping and Aggregates 
 We create a pivot-table to see the median outage duration by each cause over years. The pivot-table is presented as below:

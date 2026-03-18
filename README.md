@@ -39,13 +39,13 @@ Before analyzing the data, we need to rename the columns to increase readability
 ## Actions done 
 1. Since the raw data is in excel form, thus we removed 5 extra rows at the top and 1 extra column at the right side, moved the features name at the top of the dataframe
    
-2. after remove these extra rows and column, the top two rows are feature names and the unit or description with corresponded feature names. To format this, I connection symbols from '.' to underscore '_' for giving a better visualizaiton. Also, combined the unites and the coresponding features together with a single space. Such as: 'RES.PERCEN' -> 'Res_percen (%)', 'RES.PRICE' -> 'Res_Price (cents/kWh)' etc.
+2. after remove these extra rows and column, the top two rows are feature names and the unit or description with corresponded feature names. To format this, I connection symbols from `.` to underscore `_` for giving a better visualizaiton. Also, combined the unites and the coresponding features together with a single space. Such as: `RES.PERCEN` -> `Res_percen (%)`, `RES.PRICE` -> `Res_Price (cents/kWh)` etc.
 
-3. Next, I select few relevant features that used for my analysis. They are: 'US_state', 'Year', 'Pc_realgsp_state ($)', 'Outage_start_date', 'Outage_start_time', 'Outage_restoration_date', 'Outage_restoration_time', 'Total_price (cents / kWh)', 'Cause_category', 'Demand_loss_mw', 'Customers_affected', 'Total_sales'.
+3. Next, I select few relevant features that used for my analysis. They are: `US_state`, `Year`, `Pc_realgsp_state ($)`, `Outage_start_date`, `Outage_start_time`, `Outage_restoration_date`, `Outage_restoration_time`, `Total_price (cents / kWh)`, `Cause_category`, `Demand_loss_mw`, `Customers_affected`, `Total_sales`.
 
-4. To get the outage restoration duration, we combined 'Outage_start_date', 'Outage_start_time', 'Outage_restoration_date', 'Outage_restoration_time' together. First, we transform all these features into "datetime" data strucutre, then use 'Outage_restoration_date' and 'Outage_restoration_time' minus the 'Outage_start_date' and 'Outage_start_time' to get the restoration duration for each outage, transform the durating into the unit of hour. Lastly, drop columns regarding outage/restoration time  - 'Outage_start_date', 'Outage_start_time', 'Outage_restoration_date', 'Outage_restoration_time'.
+4. To get the outage restoration duration, we combined `Outage_start_date`, `Outage_start_time`, `Outage_restoration_date`, `Outage_restoration_time` together. First, we transform all these features into "datetime" data strucutre, then use `Outage_restoration_date` and `Outage_restoration_time` minus the `Outage_start_date` and `Outage_start_time` to get the restoration duration for each outage, transform the durating into the unit of hour. Lastly, drop columns regarding outage/restoration time  - `Outage_start_date`, `Outage_start_time`, `Outage_restoration_date`, `Outage_restoration_time`.
 
-5. Notice there are '0' exist in 'Outage_duration' which we calculated, which means there is 0 hour of outage happend, seems like a missing value. Thus we transform "0"s in the 'Outage_duration' into 'np.nan'。
+5. Notice there are `0` exist in `Outage_duration` which we calculated, which means there is 0 hour of outage happend, seems like a missing value. Thus we transform "0"s in the `Outage_duration` into `np.nan`。
 
 This is the first 5 rows of the cleaned dataframe:
 
@@ -62,7 +62,7 @@ This is the first 5 rows of the cleaned dataframe:
 
 For exploring the data set, we used univariate analysis to visulize the distribution or the other information of a single feature.
 
-First, we draw the histogram on feature 'Outage_duration':
+First, we draw the histogram on feature `Outage_duration`:
 
 <iframe
   src="graph/dist_of_outage_duration.html"
@@ -73,7 +73,7 @@ First, we draw the histogram on feature 'Outage_duration':
 
 Through the histogram graph above, we can see that the outage duration have a right skew shape, shows most outage duration being fixed really fast.
 
-Second, we can visualize the 'Pc_realgsp_state' by histogram, to see the distribution of the real GSP per state, in dollar:
+Second, we can visualize the `Pc_realgsp_state` by histogram, to see the distribution of the real GSP per state, in dollar:
 
 <iframe
   src="graph/dist_of_real_GSP_per_state.html"
@@ -168,11 +168,11 @@ Now, we want to find out the missingness dependency of "Total_price (cents / kWh
   frameborder="0">
 </iframe>
 
-Then we set up a hypothesis test to find the missing mechanism of feature 'Total_price (cents / kWh)' by using permutation test. We will set the significance level into 0.05.
+Then we set up a hypothesis test to find the missing mechanism of feature `Total_price (cents / kWh)` by using permutation test. We will set the significance level into 0.05.
 
-**Null Hypothesis:**  The distribution of 'Year' is same when 'Total_price (cents / kWh)' is missing vs not missing.
+**Null Hypothesis:**  The distribution of `Year` is same when `Total_price (cents / kWh)` is missing vs not missing.
 
-**Alternate Hypothesis:** The distribution of 'Year' is different when 'Total_price (cents / kWh)' is missing vs not missing.
+**Alternate Hypothesis:** The distribution of `Year` is different when `Total_price (cents / kWh)` is missing vs not missing.
 
 **Test Statistic:** TVD - Total Variation Distance
 
@@ -185,7 +185,7 @@ The following figure shows the result the permutation test:
   frameborder="0">
 </iframe>
 
-Through the graph above, we can see the observed TVD of feature 'Total_price (cents / kWh)' missingness has a p-value 0.0. The result show we reject the null hypothesis. This result means the feature 'Total_price (cents / kWh)' missing value is dependent on the feature 'Year', showing 'Total_price (cents / kWh)' is likely to be MAR.
+Through the graph above, we can see the observed TVD of feature `Total_price (cents / kWh)` missingness has a p-value 0.0. The result show we reject the null hypothesis. This result means the feature `Total_price (cents / kWh)` missing value is dependent on the feature `Year`, showing `Total_price (cents / kWh)` is likely to be MAR.
 
 Similarly, The following figure shows the frequency of outage over year conditioned on whether "Total_sales" is missing. 
 
@@ -196,11 +196,11 @@ Similarly, The following figure shows the frequency of outage over year conditio
   frameborder="0">
 </iframe>
 
-Then we set up a hypothesis test to find the missing mechanism of feature 'Total_sales (cents / kWh)' by using permutation test. We will set the significance level into 0.05.
+Then we set up a hypothesis test to find the missing mechanism of feature `Total_sales (cents / kWh)` by using permutation test. We will set the significance level into 0.05.
 
-**Null Hypothesis:**  The distribution of 'Year' is same when 'Total_sales (cents / kWh)' is missing vs not missing.
+**Null Hypothesis:**  The distribution of `Year` is same when `Total_sales (cents / kWh)` is missing vs not missing.
 
-**Alternate Hypothesis:** The distribution of 'Year' is different when 'Total_sales (cents / kWh)' is missing vs not missing.
+**Alternate Hypothesis:** The distribution of `Year` is different when `Total_sales (cents / kWh)` is missing vs not missing.
 
 **Test Statistic:** TVD - Total Variation Distance
 
@@ -213,7 +213,7 @@ The following figure shows the result the permutation test. The test statistic i
   frameborder="0">
 </iframe>
 
-Through the graph above, we can see the observed TVD of feature 'Total_sales (cents / kWh)' missingness has a p-value 0.0. The result show we reject the null hypothesis. This result means the feature 'Total_sales (cents / kWh)' missing value is dependent on the feature 'Year', showing 'Total_sales (cents / kWh)' is likely to be MAR.
+Through the graph above, we can see the observed TVD of feature `Total_sales (cents / kWh)` missingness has a p-value 0.0. The result show we reject the null hypothesis. This result means the feature `Total_sales (cents / kWh)` missing value is dependent on the feature `Year`, showing `Total_sales (cents / kWh)` is likely to be MAR.
 
 ## Handling Missingness
 
@@ -258,7 +258,7 @@ The following figure visualizes the result of the permutation test, where the re
 Our model aims to estimate/predict the power outage duration by the selected features ("Pc_realgsp_state ($)", "Total_price (cents / kWh)", "Cause_category", "Demand_loss_mw", "Customers_affected", "Total_sales",). This is a typical regression problem, so the performance matrix chosen is root mean square error (RMSE). The lower RMSE, the closer distance between the predicted value and the actual value. 
 
 ## Base Line Model
-The selected features as indicated above. Before training, we need to address a few issues regarding the data. First, "Cause_category" is a nomial categorical feature, so we need to apply OneHotEncoder to convert the categories into columns of 0's and 1's. Then, we standardize the continuous quantitative features to reduce the impact of outliers. Lastly, since the distribution of power outage duration is right-skewed, performing a log-transformation makes the trend relatively more linear. For the base line model, we implemented the linear regression model and observed the performance on the testing data (20% of the dataset). The following figures show the actual outage duration verses our prediction in the logarithmic scale and the original scale.
+The selected features as indicated above. Before training, we need to address a few issues regarding the data. First, "Cause_category" is a nomial categorical feature, so we need to apply OneHotEncoder to convert the categories into columns of 0`s and 1`s. Then, we standardize the continuous quantitative features to reduce the impact of outliers. Lastly, since the distribution of power outage duration is right-skewed, performing a log-transformation makes the trend relatively more linear. For the base line model, we implemented the linear regression model and observed the performance on the testing data (20% of the dataset). The following figures show the actual outage duration verses our prediction in the logarithmic scale and the original scale.
 
 <iframe
   src="graph/baseline_log.html"

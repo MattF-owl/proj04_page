@@ -39,13 +39,13 @@ Before analyzing the data, we need to rename the columns to increase readability
 ## Actions done 
 1. Since the raw data is in excel form, thus we removed 5 extra rows at the top and 1 extra column at the right side, moved the features name at the top of the dataframe
    
-2. after remove these extra rows and column, the top two rows are feature names and the unit or description with corresponded feature names. To format this, I connection symbols from `.` to underscore `_` for giving a better visualizaiton. Also, combined the unites and the coresponding features together with a single space. Such as: `RES.PERCEN` -> `Res_percen (%)`, `RES.PRICE` -> `Res_Price (cents/kWh)` etc.
+2. After remove these extra rows and column, the top two rows are feature names and the unit or description with corresponded feature names. To format this, we modify punctuations from `.` to underscore `_` for better readability. Also, combined the unites and the coresponding features together with a single space. Such as: `RES.PERCEN` -> `Res_percen (%)`, `RES.PRICE` -> `Res_Price (cents/kWh)` etc.
 
-3. Next, I select few relevant features that used for my analysis. They are: `US_state`, `Year`, `Pc_realgsp_state ($)`, `Outage_start_date`, `Outage_start_time`, `Outage_restoration_date`, `Outage_restoration_time`, `Total_price (cents / kWh)`, `Cause_category`, `Demand_loss_mw`, `Customers_affected`, `Total_sales`.
+3. Next, we select few relevant features that used for my analysis. The columns include: `US_state`, `Year`, `Pc_realgsp_state ($)`, `Outage_start_date`, `Outage_start_time`, `Outage_restoration_date`, `Outage_restoration_time`, `Total_price (cents / kWh)`, `Cause_category`, `Demand_loss_mw`, `Customers_affected`, `Total_sales`.
 
 4. To get the outage restoration duration, we combined `Outage_start_date`, `Outage_start_time`, `Outage_restoration_date`, `Outage_restoration_time` together. First, we transform all these features into "datetime" data strucutre, then use `Outage_restoration_date` and `Outage_restoration_time` minus the `Outage_start_date` and `Outage_start_time` to get the restoration duration for each outage, transform the durating into the unit of hour. Lastly, drop columns regarding outage/restoration time  - `Outage_start_date`, `Outage_start_time`, `Outage_restoration_date`, `Outage_restoration_time`.
 
-5. Notice there are `0` exist in `Outage_duration` which we calculated, which means there is 0 hour of outage happend, seems like a missing value. Thus we transform "0"s in the `Outage_duration` into `np.nan`。
+5. Notice there are `0` exist in `Outage_duration` which we calculated, which means there is 0 hour of outage happend, seems like a missing value. Thus we transform "0"s in the `Outage_duration` into `np.nan`.
 
 This is the first 5 rows of the cleaned dataframe:
 
@@ -82,7 +82,7 @@ Second, we can visualize the `Pc_realgsp_state` by histogram, to see the distrib
   frameborder="0">
 </iframe>
 
-Through the histogram above, we can see most US states have averagely 50k of real gsp at most time from January 2000 to July 2006. Only few states have 160k of real gsp at some time between January 2000 to July 2006.
+Through the histogram above, we can see most US states have averagely 50k of real gsp at most time from January 2000 to July 2016. Only few states have 160k of real gsp at some time between January 2000 to July 2016.
 
 ### Map Figures
 
@@ -101,7 +101,7 @@ Through the map above, we can see that the most number of outages are happened i
 
 Also we used bivariate analysis to visulize the distribution or the other information of two features. To help me understand some relation between pairs of features.
 
-First, I want to visualize the relation between the causation of outages and the median of outage duration by bar graph. I choose to use median of outage duration because of the distribution of outage duration is skewed, using median can better explain the distribution of outage duration.
+First, we want to visualize the relation between the causation of outages and the median of outage duration by bar graph. we chose to use median of outage duration because of the distribution of outage duration is skewed, using median can better explain the distribution of outage duration.
 
 <iframe
   src="graph/median_outage_duration_by_cause.html"
@@ -114,7 +114,7 @@ Through the bar graph, we can see that most outages is caused by the fuel supply
 
 ### Map Figures
 
-Second, we can visualize the average outage duration in each state of US, from January 2000 to July 2006:
+Second, we can visualize the average outage duration in each state of US, from January 2000 to July 2016:
 
 <iframe
   src="graph/avg_outage_duration_map.html"
@@ -196,13 +196,13 @@ Similarly, The following figure shows the frequency of outage over year conditio
   frameborder="0">
 </iframe>
 
-Then we set up a hypothesis test to find the missing mechanism of feature `Total_sales (cents / kWh)` by using permutation test. We will set the significance level into 0.05.
+Then we set up a hypothesis test to find the missing mechanism of feature `Total_sales` by using permutation test. We will set the significance level into 0.05.
 
-**Null Hypothesis:**  The distribution of `Year` is same when `Total_sales (cents / kWh)` is missing vs not missing.
+**Null Hypothesis:**  The distribution of `Customers_affected` is same when `Total_sales` is missing vs not missing.
 
-**Alternate Hypothesis:** The distribution of `Year` is different when `Total_sales (cents / kWh)` is missing vs not missing.
+**Alternate Hypothesis:** The distribution of `Customers_affected` is different when `Total_sales` is missing vs not missing.
 
-**Test Statistic:** TVD - Total Variation Distance
+**Test Statistic:** Mean difference 
 
 The following figure shows the result the permutation test. The test statistic is the total variance distance between two groups because "Year" is a categorical feature. 
 
@@ -213,7 +213,7 @@ The following figure shows the result the permutation test. The test statistic i
   frameborder="0">
 </iframe>
 
-Through the graph above, we can see the observed TVD of feature `Total_sales (cents / kWh)` missingness has a p-value 0.0. The result show we reject the null hypothesis. This result means the feature `Total_sales (cents / kWh)` missing value is dependent on the feature `Year`, showing `Total_sales (cents / kWh)` is likely to be MAR.
+Through the graph above, we can see the observed TVD of feature `Total_sales` missingness has a p-value 0.0. The result show we reject the null hypothesis. This result means the feature `Total_sales` missing value is dependent on the feature `Customers_affected`, showing `Total_sales` is likely to be MAR.
 
 Lastly, we set up a hypothesis test to find the missing mechanism of feature `Outage_duration` by using permutation test. We will set the significance level into 0.05.
 

@@ -282,25 +282,53 @@ The following figure visualizes the result of the permutation test, where the re
 ## Framing a Prediction Problem 
 Our model aims to estimate/predict the power outage duration by the selected features ("Pc_realgsp_state ($)", "Total_price (cents / kWh)", "Cause_category", "Demand_loss_mw", "Customers_affected", "Total_sales",). This is a typical regression problem, so the performance matrix chosen is root mean square error (RMSE). The lower RMSE, the closer distance between the predicted value and the actual value. 
 
-## Base Line Model
-The selected features as indicated above. Before training, we need to address a few issues regarding the data. First, "Cause_category" is a nomial categorical feature, so we need to apply OneHotEncoder to convert the categories into columns of 0`s and 1`s. Then, we standardize the continuous quantitative features to reduce the impact of outliers. Lastly, since the distribution of power outage duration is right-skewed, performing a log-transformation makes the trend relatively more linear. For the base line model, we implemented the linear regression model and observed the performance on the testing data (20% of the dataset). The following figures show the actual outage duration verses our prediction in the logarithmic scale and the original scale.
+## Base Line Model (Matthew)
 
 <iframe
-  src="graph/baseline_log.html"
+  src="graph/baseline.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
+
+
+
+
+## Final Model (Matthew)
+
+<iframe
+  src="graph/n_estimators.html"
   width="100%"
   height="600"
   frameborder="0">
 </iframe>
 
 <iframe
-  src="graph/baseline_original_scale.html"
+  src="graph/max_depth.html"
   width="100%"
   height="600"
   frameborder="0">
 </iframe>
 
-By looking at both scatter plots, it is obvious that the model does very poorly in the prediction because the data points are sparse. Statistically, the RMSE of the testing is 1.249 in the log scale and 126.373 in the original scale. The average outage duration is only 43.755 hours. The information emphasizes how bad the prediction is. If we look closely to the figure of the original scale, we can observe that the data points are mostly clustered in the bottom-left corner, indicating that the majority of the training data has a short outage duration. It implies that the existance of outliers in outage durations, which is one issue that we must address in the final model. 
+<iframe
+  src="graph/min_samples_leaf.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
 
-## Final Model 
+<iframe
+  src="graph/final.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>
 
-## Fairness Analysis
+## Fairness Analysis (Matthew)
+
+<iframe
+  src="graph/fairness.html"
+  width="100%"
+  height="600"
+  frameborder="0">
+</iframe>

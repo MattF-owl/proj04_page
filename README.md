@@ -337,6 +337,7 @@ We used the `GridSearchCV` with `cv` of 5 and `scoring` of "neg_mean_absolute_er
 We get a better performanced model compare with the base line model. We get mean absolute error of 14.4750 and R square score of 0.3471. These metrix shows the predicted value made by the final model is closer to the actual value, and the final model can explain more proprotion of the variability of the actual outage duration compare witht he base line model.
 
 
+The graph below the the learning curve for hyperparameter of `n_estimators`, which shows the training loss and validation loss changing as training progress:
 
 <iframe
   src="graph/n_estimators.html"
@@ -345,6 +346,7 @@ We get a better performanced model compare with the base line model. We get mean
   frameborder="0">
 </iframe>
 
+The graph below the the learning curve for hyperparameter of `max_depth`, which shows the training loss and validation loss changing as training progress:
 
 <iframe
   src="graph/max_depth.html"
@@ -352,6 +354,8 @@ We get a better performanced model compare with the base line model. We get mean
   height="600"
   frameborder="0">
 </iframe>
+
+The graph below the the learning curve for hyperparameter of `min_samples_leaf`, which shows the training loss and validation loss changing as training progress:
 
 <iframe
   src="graph/min_samples_leaf.html"

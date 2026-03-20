@@ -280,7 +280,17 @@ The following figure visualizes the result of the permutation test, where the re
 
 
 ## Framing a Prediction Problem 
-Our model aims to estimate/predict the power outage duration by the selected features ("Pc_realgsp_state ($)", "Total_price (cents / kWh)", "Cause_category", "Demand_loss_mw", "Customers_affected", "Total_sales",). This is a typical regression problem, so the performance matrix chosen is root mean square error (RMSE). The lower RMSE, the closer distance between the predicted value and the actual value. 
+Our model aims to estimate/predict the power outage duration by the selected features (`Pc_realgsp_state ($)`, `Total_price (cents / kWh)`, `Cause_category`, `Demand_loss_mw`, `Customers_affected`, `Total_sales`). We want to use these features to estimate/predict the time (hours) that the power outage can be fixed.
+
+This is a typical regression problem, so the performance matrix chosen is root mean square error (RMSE) to check the bias of the model prediction; using R square(R^2) metrix to check the variance of the model prediction. We are aiming for lower RMSE, which reduce the bias between predicted value and actual value, making predicted value closer to actual value. We are also aiming for larger R square score (closer to 1), which model can explains a greater proportion of the variability of the actual value.
+
+## Data Cleaning for Modeling
+
+Before modeling, we notice that there is a small number of unusually large  `Outage_duration` values may reduce the performance of the model, which these data are extreme and not representative of most cases. 
+
+Thus, we seems these data as outliers, as defined by the IQR method, which defines outliers as values either below Q1 - 1.5 * IQR or above Q3 + 1.5 * IQR, where Q1 is the 25 percentile of the data, Q3 is the 75 percentile of the data, and IQR is range between Q1 and Q3 (Q3 - Q1).
+
+We will use the data set without these `Outage_duration` outliers for both baseline modeling and the final modeling.
 
 ## Base Line Model (Matthew)
 

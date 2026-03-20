@@ -328,9 +328,9 @@ We changed our model from Multiple Linear Regression into Random Forest Regresso
 
 ### Model Training
 We used the `GridSearchCV` with `cv` of 5 and `scoring` of "neg_mean_absolute_error". The `GridSearchCV` find the best hyperparameters of:
-    *max_depth: 10
-    *min_samples_leaf: 1
-    *n_estimators: 200
+- max_depth: 10
+- min_samples_leaf: 1
+- n_estimators: 200
 
 ### Model Performance
 We get a better performanced model compare with the base line model. We get mean absolute error of 14.4750 and R square score of 0.3471. These metrix shows the predicted value made by the final model is closer to the actual value, and the final model can explain more proprotion of the variability of the actual outage duration compare with he base line model.

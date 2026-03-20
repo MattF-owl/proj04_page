@@ -282,7 +282,7 @@ The following figure visualizes the result of the permutation test, where the re
 ## Framing a Prediction Problem 
 Our model aims to estimate/predict the power outage duration by the selected features (`Pc_realgsp_state ($)`, `Total_price (cents / kWh)`, `Cause_category`, `Demand_loss_mw`, `Customers_affected`, `Total_sales`). We want to use these features to estimate/predict the time (hours) that the power outage can be fixed.
 
-This is a typical regression problem, so the performance matrix chosen is root mean square error (RMSE) to check the bias of the model prediction; using R square(R^2) metrix to check the variance of the model prediction. We are aiming for lower RMSE, which reduce the bias between predicted value and actual value, making predicted value closer to actual value. We are also aiming for larger R square score (closer to 1), which model can explains a greater proportion of the variability of the actual value.
+This is a typical regression problem, so the performance matrix chosen is mean absolute error (MAE) to check the bias of the model prediction, since the response value , `Outage_Duration`, is right skewed, using MAE can be less sensative to these extreme `Outage_duration` values; using R square(R^2) metrix to check the variance of the model prediction. We are aiming for lower RMSE, which reduce the bias between predicted value and actual value, making predicted value closer to actual value. We are also aiming for larger R square score (closer to 1), which model can explains a greater proportion of the variability of the actual value.
 
 ## Data Cleaning for Modeling
 
@@ -292,7 +292,17 @@ Thus, we seems these data as outliers, as defined by the IQR method, which defin
 
 We will use the data set without these `Outage_duration` outliers for both baseline modeling and the final modeling.
 
-## Base Line Model (Matthew)
+## Base Line Model 
+
+Our model is Multiple Linear Regression, using features `Year`, `Month`, `US_state`, `Pc_realgsp_state ($)`, `Total_price (cents / kWh)`, `Cause_category`, `Demand_loss_mw`, `Customers_affected`, `Total_sales` to build oure baseline model, which to predict the duration of power outage restoration. All these informations can help people to better estimate the time length of power outage restoration.
+
+We have ordinal feature: `Month`, nominal feautures: `US_state`, `Cause_category`, and quantitative features: `Pc_realgsp_state ($)`, `Total_price (cents / kWh)`, `Demand_loss_mw`, `Customers_affected`, `Total_sales`. We believe these features are relate with your response variabe `Outage_duration`, such as different region may have different approach to restore the power outage, so we use the feature `US_state`; the state real Gross State Product (GSP) represent the financial strength of the state may affect the time for restore the power outage, so we use the feature `Pc_realgsp_state ($)`.
+
+In the baseline model we use `OneHotEncoder` to transform the ordinal features and nominal features in to 0 or 1 distinct groups, and we drop the first column after feature bing one-hot encoded to prevent the collinearity. Encoding these nominal and ordinal features help use convert object-type features in to numerical type which can used for training the model.
+
+The performance of this model is not so good, which we get a mean absolute error of 21.6324, a R squared score of 0.02806. The MAE shows the model predict the outage duration deviate from the actual outage duration, and R squared score indicates the model explain very small proportion of the variability of the actual outage duration.
+
+The model performance can be visualized below, which the scatter plot shows how predict value is far away from the actual value by the y=x reference line:
 
 <iframe
   src="graph/baseline.html"

@@ -317,13 +317,34 @@ The model performance can be visualized below, which the scatter plot shows how 
 To get a better estimate/prediction on the outage duration, we select new features, done some feature engineering, choose a new model, and use CV fold to train the model.
 
 ### Feature Selection
-We use the pearson correlation to compared between feature `Outage_duration` with all other features, and get 3 more features: `
+We use the pearson correlation to compared between feature `Outage_duration` with all other features, and get 3 more features: `Util_contri (%)`, `Pct_land (%)`, and `Pct_water_tot (%)` that have higher pearson correlations then all other features that not being selected in the baseline model. We included these new three features into our predictor data set.
+
+### Feature Engineering
+1. we mapping the feature `Month` into `Season`, from ordinal into nominal which each three month will be transformed in to their corresponded season, such as 12, 1, 2 will map to  "Winter". To do so, we expected using season instead of month having more explanatory power, which the power outage duration may affected by the seasonal climate. This feature transformation can also reduced the noise which reduced from 12 categories into 4 categories. We then include this transformer into our pipeline.
+
+2. We put another transformer - `StandardScaler` - into our pipeline for quantitative data. Using `StandardScaler` can bring all quantitative data more centralized to 0 and keep the shpae of the feature distribution. This transformer can help model train more stably, reduce the number scale of the large=scale features.
+
+### Model Selection
+We changed our model from Multiple Linear Regression into Random Forest Regressor. This model can better capture the nonlinear relationships and be more robust to outliers and unusual patterns, which we expect will have better performance then Multiple Linear Regression. IN Random Forest Regressor, we choose to use hyperparameters: `n_estimators`, `max_depth`, `min_samples_leaf`.
+
+### Model Training
+We used the `GridSearchCV` with `cv` of 5 and `scoring` of "neg_mean_absolute_error". The `GridSearchCV` find the best hyperparameters of:
+    *max_depth: 10
+    *min_samples_leaf: 1
+    *n_estimators: 200
+
+### Model Performance
+We get a better performanced model compare with the base line model. We get mean absolute error of 14.4750 and R square score of 0.3471. These metrix shows the predicted value made by the final model is closer to the actual value, and the final model can explain more proprotion of the variability of the actual outage duration compare witht he base line model.
+
+
+
 <iframe
   src="graph/n_estimators.html"
   width="100%"
   height="600"
   frameborder="0">
 </iframe>
+
 
 <iframe
   src="graph/max_depth.html"
@@ -338,6 +359,8 @@ We use the pearson correlation to compared between feature `Outage_duration` wit
   height="600"
   frameborder="0">
 </iframe>
+
+The model performance can be visualized below, which the scatter plot shows how predict value is far away from the actual value by the y=x reference line:
 
 <iframe
   src="graph/final.html"

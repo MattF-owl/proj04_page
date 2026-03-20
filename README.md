@@ -280,7 +280,7 @@ The following figure visualizes the result of the permutation test, where the re
 
 
 ## Framing a Prediction Problem 
-Our model aims to estimate/predict the power outage duration by the selected features (`Pc_realgsp_state ($)`, `Total_price (cents / kWh)`, `Cause_category`, `Demand_loss_mw`, `Customers_affected`, `Total_sales`). We want to use these features to estimate/predict the time (hours) that the power outage can be fixed.
+Our model aims to estimate/predict the power outage duration by the some selected features. We want to use these features to estimate/predict the time (hours) that the power outage can be fixed.
 
 This is a typical regression problem, so the performance matrix chosen is mean absolute error (MAE) to check the bias of the model prediction, since the response value , `Outage_Duration`, is right skewed, using MAE can be less sensative to these extreme `Outage_duration` values; using R square(R^2) metrix to check the variance of the model prediction. We are aiming for lower RMSE, which reduce the bias between predicted value and actual value, making predicted value closer to actual value. We are also aiming for larger R square score (closer to 1), which model can explains a greater proportion of the variability of the actual value.
 
@@ -294,7 +294,7 @@ We will use the data set without these `Outage_duration` outliers for both basel
 
 ## Base Line Model 
 
-Our model is Multiple Linear Regression, using features `Year`, `Month`, `US_state`, `Pc_realgsp_state ($)`, `Total_price (cents / kWh)`, `Cause_category`, `Demand_loss_mw`, `Customers_affected`, `Total_sales` to build oure baseline model, which to predict the duration of power outage restoration. All these informations can help people to better estimate the time length of power outage restoration.
+Our model is Multiple Linear Regression, using features  `Month`, `US_state`, `Pc_realgsp_state ($)`, `Total_price (cents / kWh)`, `Cause_category`, `Demand_loss_mw`, `Customers_affected`, `Total_sales` to build oure baseline model, which to predict the duration of power outage restoration. All these informations can help people to better estimate the time length of power outage restoration.
 
 We have ordinal feature: `Month`, nominal feautures: `US_state`, `Cause_category`, and quantitative features: `Pc_realgsp_state ($)`, `Total_price (cents / kWh)`, `Demand_loss_mw`, `Customers_affected`, `Total_sales`. We believe these features are relate with your response variabe `Outage_duration`, such as different region may have different approach to restore the power outage, so we use the feature `US_state`; the state real Gross State Product (GSP) represent the financial strength of the state may affect the time for restore the power outage, so we use the feature `Pc_realgsp_state ($)`.
 
@@ -312,10 +312,12 @@ The model performance can be visualized below, which the scatter plot shows how 
 </iframe>
 
 
+## Final Model 
 
+To get a better estimate/prediction on the outage duration, we select new features, done some feature engineering, choose a new model, and use CV fold to train the model.
 
-## Final Model (Matthew)
-
+### Feature Selection
+We use the pearson correlation to compared between feature `Outage_duration` with all other features, and get 3 more features: `
 <iframe
   src="graph/n_estimators.html"
   width="100%"

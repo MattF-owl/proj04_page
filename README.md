@@ -313,7 +313,6 @@ The model performance can be visualized below, which the scatter plot shows how 
 
 
 ## Final Model 
-
 To get a better estimate/prediction on the outage duration, we select new features, done some feature engineering, choose a new model, and use CV fold to train the model.
 
 ### Feature Selection
@@ -334,7 +333,7 @@ We used the `GridSearchCV` with `cv` of 5 and `scoring` of "neg_mean_absolute_er
     *n_estimators: 200
 
 ### Model Performance
-We get a better performanced model compare with the base line model. We get mean absolute error of 14.4750 and R square score of 0.3471. These metrix shows the predicted value made by the final model is closer to the actual value, and the final model can explain more proprotion of the variability of the actual outage duration compare witht he base line model.
+We get a better performanced model compare with the base line model. We get mean absolute error of 14.4750 and R square score of 0.3471. These metrix shows the predicted value made by the final model is closer to the actual value, and the final model can explain more proprotion of the variability of the actual outage duration compare with he base line model.
 
 
 The graph below the the learning curve for hyperparameter of `n_estimators`, which shows the training loss and validation loss changing as training progress:
@@ -373,7 +372,24 @@ The model performance can be visualized below, which the scatter plot shows how 
   frameborder="0">
 </iframe>
 
-## Fairness Analysis (Matthew)
+## Fairness Analysis
+In this section, we want to use permutation test to analysis the fairness of our final model, which our model can performs differently across groups. Doing this analysis intended to prevent the model from systematically favoring one group over another or producing unequal prediction across groups.
+
+We choose the similar grouping approach in the Hypothesis Testing, which we try to compare the model fairness between state have more than 50000$ per capita real GSP and state have less than 50000$ per capita real GSP.
+
+We decided on these groups because we want to check the fairness that model can predict between state have more financial power and state have less financial power. We want to make sure that the model would perform same between two groups mentioned above.
+
+Our evaluation metric will be R square score, which can shows the model's performance on explaining the variability of the actual value.
+
+**Question:** Does our final model performance fairly on predicting `Outage_duratino` between states have more financial power and states less financial power?
+
+**Null Hypothesis:**  The model is fiar. The R squared score is similar between states have more than 50000$ of `Pc_realgsp_state ($)` and states have less than 50000$ of `Pc_realgsp_state ($)`.
+
+**Alternate Hypothesis:** The model is unfiar. The R squared score is different between states have more than 50000$ of `Pc_realgsp_state ($)` and states have less than 50000$ of `Pc_realgsp_state ($)`.
+
+**Test Statistic:** Absolute difference of R squared score
+
+The graph below shows the distribution of permutation test on states have more than 50000$ of real GSP and states have less than 50000$ of real GSP. The significance level is 0.05:
 
 <iframe
   src="graph/fairness.html"
@@ -381,3 +397,5 @@ The model performance can be visualized below, which the scatter plot shows how 
   height="600"
   frameborder="0">
 </iframe>
+
+Through the graph above, we can see the observed absolute difference of R squared score has a p-value 0.7620. The result show we fail to reject the null hypothesis. This result means we not have sufficient evidence ot conclude that the model perfoms differently across the two groups. We do not find sufficient evidence to confirm the model performed unfairly.
